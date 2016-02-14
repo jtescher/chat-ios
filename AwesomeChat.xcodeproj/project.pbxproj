@@ -14,6 +14,14 @@
 		B91CC9381C710CA800DBA480 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B91CC9361C710CA800DBA480 /* LaunchScreen.storyboard */; };
 		B91CC9431C710CA800DBA480 /* AwesomeChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91CC9421C710CA800DBA480 /* AwesomeChatTests.swift */; };
 		B91CC94E1C710CA800DBA480 /* AwesomeChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91CC94D1C710CA800DBA480 /* AwesomeChatUITests.swift */; };
+		B99CC3961C712B2200F73177 /* ChannelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99CC3951C712B2200F73177 /* ChannelTableViewController.swift */; };
+		B99CC3971C712B2200F73177 /* ChannelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99CC3951C712B2200F73177 /* ChannelTableViewController.swift */; };
+		B99CC3991C71371A00F73177 /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99CC3981C71371A00F73177 /* ChannelViewController.swift */; };
+		B99CC39A1C71371A00F73177 /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99CC3981C71371A00F73177 /* ChannelViewController.swift */; };
+		B9F392A51C711D5D005743F8 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F392A41C711D5D005743F8 /* Channel.swift */; };
+		B9F392A61C711D5D005743F8 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F392A41C711D5D005743F8 /* Channel.swift */; };
+		B9F392A81C711FEF005743F8 /* ChannelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F392A71C711FEF005743F8 /* ChannelTableViewCell.swift */; };
+		B9F392A91C711FEF005743F8 /* ChannelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F392A71C711FEF005743F8 /* ChannelTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +55,10 @@
 		B91CC9491C710CA800DBA480 /* AwesomeChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AwesomeChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B91CC94D1C710CA800DBA480 /* AwesomeChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeChatUITests.swift; sourceTree = "<group>"; };
 		B91CC94F1C710CA800DBA480 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B99CC3951C712B2200F73177 /* ChannelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTableViewController.swift; sourceTree = "<group>"; };
+		B99CC3981C71371A00F73177 /* ChannelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
+		B9F392A41C711D5D005743F8 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		B9F392A71C711FEF005743F8 /* ChannelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,9 +112,13 @@
 				B91CC92D1C710CA800DBA480 /* AppDelegate.swift */,
 				B91CC92F1C710CA800DBA480 /* ViewController.swift */,
 				B91CC9311C710CA800DBA480 /* Main.storyboard */,
+				B9F392A71C711FEF005743F8 /* ChannelTableViewCell.swift */,
+				B99CC3951C712B2200F73177 /* ChannelTableViewController.swift */,
+				B99CC3981C71371A00F73177 /* ChannelViewController.swift */,
 				B91CC9341C710CA800DBA480 /* Assets.xcassets */,
 				B91CC9361C710CA800DBA480 /* LaunchScreen.storyboard */,
 				B91CC9391C710CA800DBA480 /* Info.plist */,
+				B9F392A41C711D5D005743F8 /* Channel.swift */,
 			);
 			path = AwesomeChat;
 			sourceTree = "<group>";
@@ -257,7 +273,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B91CC9301C710CA800DBA480 /* ViewController.swift in Sources */,
+				B9F392A51C711D5D005743F8 /* Channel.swift in Sources */,
+				B99CC3961C712B2200F73177 /* ChannelTableViewController.swift in Sources */,
 				B91CC92E1C710CA800DBA480 /* AppDelegate.swift in Sources */,
+				B99CC3991C71371A00F73177 /* ChannelViewController.swift in Sources */,
+				B9F392A81C711FEF005743F8 /* ChannelTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +286,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B91CC9431C710CA800DBA480 /* AwesomeChatTests.swift in Sources */,
+				B9F392A61C711D5D005743F8 /* Channel.swift in Sources */,
+				B99CC3971C712B2200F73177 /* ChannelTableViewController.swift in Sources */,
+				B9F392A91C711FEF005743F8 /* ChannelTableViewCell.swift in Sources */,
+				B99CC39A1C71371A00F73177 /* ChannelViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +508,7 @@
 				B91CC9541C710CA800DBA480 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B91CC9551C710CA800DBA480 /* Build configuration list for PBXNativeTarget "AwesomeChatTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +517,7 @@
 				B91CC9571C710CA800DBA480 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B91CC9581C710CA800DBA480 /* Build configuration list for PBXNativeTarget "AwesomeChatUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +526,7 @@
 				B91CC95A1C710CA800DBA480 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
