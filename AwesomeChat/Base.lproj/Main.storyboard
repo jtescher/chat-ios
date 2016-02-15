@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Channels-->
@@ -57,16 +58,67 @@
                     <view key="view" contentMode="scaleToFill" id="9P9-iw-Vlh">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zgU-fn-Aye">
+                                <rect key="frame" x="20" y="0.0" width="560" height="580"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="540" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="afg-0R-94L">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="550"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChannelMessageCell" textLabel="TAF-fX-ydF" rowHeight="44" style="IBUITableViewCellStyleDefault" id="uwV-j2-WmA">
+                                                <rect key="frame" x="0.0" y="92" width="560" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uwV-j2-WmA" id="prE-K4-h2T">
+                                                    <rect key="frame" x="0.0" y="0.0" width="560" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TAF-fX-ydF">
+                                                            <rect key="frame" x="15" y="0.0" width="530" height="43"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="lu3-RV-W9h">
+                                        <rect key="frame" x="0.0" y="550" width="560" height="30"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="500" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bd6-Nf-Dvk">
+                                                <rect key="frame" x="0.0" y="0.0" width="504" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="36" placeholderIntrinsicHeight="30" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqY-lA-qDM">
+                                                <rect key="frame" x="524" y="0.0" width="36" height="30"/>
+                                                <state key="normal" title="Send"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="oTq-39-3gO" firstAttribute="top" secondItem="zgU-fn-Aye" secondAttribute="bottom" constant="20" id="TZN-k2-HyC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zgU-fn-Aye" secondAttribute="trailing" id="dgk-7e-olT"/>
+                            <constraint firstItem="zgU-fn-Aye" firstAttribute="leading" secondItem="9P9-iw-Vlh" secondAttribute="leadingMargin" id="iIF-bi-0x6"/>
+                            <constraint firstItem="zgU-fn-Aye" firstAttribute="top" secondItem="9P9-iw-Vlh" secondAttribute="topMargin" id="pvM-1w-q7e"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Channel" id="0Jk-3H-5MR"/>
                     <connections>
+                        <outlet property="messagesTableView" destination="afg-0R-94L" id="R4P-jn-8bG"/>
                         <outlet property="navigation" destination="0Jk-3H-5MR" id="uPf-kO-RKa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M6x-jL-8I3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1760" y="1264"/>
+            <point key="canvasLocation" x="1756" y="1249"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="U0h-jA-2Yp">
