@@ -12,7 +12,7 @@ class ChannelTableViewController: UITableViewController {
     
     
     // MARK: Properties
-    let channels = [Channel(name: "Startups"), Channel(name: "Chatbots")]
+    let channels = [Channel(name: "startups"), Channel(name: "chatbots")]
     
     
     // MARK: - Table view data source
@@ -29,7 +29,7 @@ class ChannelTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ChannelTableViewCell
         
         let channel = channels[indexPath.row]
-        cell.nameLabel.text = channel.name
+        cell.nameLabel.text = channel.name.capitalizedString
         
         return cell
     }
