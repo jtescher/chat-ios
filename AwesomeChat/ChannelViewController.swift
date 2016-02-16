@@ -19,6 +19,7 @@ class ChannelViewController: UIViewController, UITableViewDelegate, UITableViewD
     var channel: Channel?
     var messages = [Message]()
     let socket = SocketIOClient(socketURL: NSURL(string: "http://localhost:3000")!)
+    let initialBottomStackViewConstraintConstant = CGFloat(20)
     
     
     // MARK: Lifecycle
@@ -66,11 +67,12 @@ class ChannelViewController: UIViewController, UITableViewDelegate, UITableViewD
     func keyboardWillShow(notification: NSNotification) {
         var info = notification.userInfo!
         let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
-        self.bottomStackViewConstraint.constant = keyboardFrame.size.height + 20
+        bottomStackViewConstraint.constant = keyboardFrame.size.height + initialBottomStackViewConstraintConstant
+        messagesTableView.contentOffset.y += keyboardFrame.size.height
     }
 
     func keyboardWillHide(notification: NSNotification) {
-        self.bottomStackViewConstraint.constant = 20
+        self.bottomStackViewConstraint.constant = initialBottomStackViewConstraintConstant
     }
 
     
@@ -85,18 +87,62 @@ class ChannelViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // Populate old chat history
         socket.on("chat_history") { data, ack in
-            if let rawMessages = data[0] as? [NSDictionary] {
-                self.messages += rawMessages.map({rawMessage in
-                    Message(body: rawMessage["body"] as! String, channelName: rawMessage["channelName"] as! String, createdTime: rawMessage["createdTime"] as! String)
-                })
-                self.messagesTableView.reloadData()
+            self.withMessagesScrollPositionHandled() {
+                if let rawMessages = data[0] as? [NSDictionary] {
+                    self.messages += rawMessages.flatMap(self.parseRawMessage)
+                    self.onMessageAdded()
+                }
+            }
+        }
+
+        // Show new messages
+        socket.on("new_message") { data, ack in
+            self.withMessagesScrollPositionHandled() {
+                if let rawMessage = data[0] as? NSDictionary, message = self.parseRawMessage(rawMessage) {
+                    self.messages.append(message)
+                    self.onMessageAdded()
+                }
             }
         }
 
     }
 
+    private func parseRawMessage(rawMessage: NSDictionary) -> Message? {
+        if let body = rawMessage["body"] as? String, channelName = rawMessage["channelName"] as? String, createdTime = rawMessage["createdTime"] as? String {
+            return Message(body: body, channelName: channelName, createdTime: createdTime)
+        } else {
+            return nil
+        }
+    }
 
-    // MARK: Actions
+    private func onMessageAdded() {
+        withMessagesScrollPositionHandled() {
+            self.messagesTableView.reloadData()
+        }
+    }
+
+    func withMessagesScrollPositionHandled(closure: () -> Void) {
+        let wasScrolledToBottomOfMessagesView = isScrolledToBottomOfView(messagesTableView)
+
+        closure()
+
+        if wasScrolledToBottomOfMessagesView {
+            scrollToBottomOfMessagesView()
+        }
+    }
+
+    private func isScrolledToBottomOfView(view: UIScrollView) -> Bool {
+        let viewHeight = view.frame.size.height
+        let distanceFromBottom = view.contentSize.height - view.contentOffset.y
+        return distanceFromBottom <= viewHeight
+    }
+
+    private func scrollToBottomOfMessagesView() {
+        messagesTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: messages.count - 1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)
+    }
+
+
+    // MARK: - Actions
     @IBAction func viewDidTap(sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
