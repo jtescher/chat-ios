@@ -15,6 +15,7 @@ class ChannelViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: Properties
     @IBOutlet weak var navigation: UINavigationItem!
     @IBOutlet weak var messagesTableView: UITableView!
+    @IBOutlet weak var bottomStackViewConstraint: NSLayoutConstraint!
     var channel: Channel?
     var messages = [Message]()
     let socket = SocketIOClient(socketURL: NSURL(string: "http://localhost:3000")!)
@@ -23,12 +24,20 @@ class ChannelViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Table view delegate / data source setup
         messagesTableView.delegate = self
         messagesTableView.dataSource = self
         
+        // view setup
         let channelName = channel!.name
         navigation.title = channelName.capitalizedString
         
+        // Keyboard view resizing setup
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+
+        // Socket.IO setup
         addHandlers(channelName)
         socket.connect()
     }
@@ -53,6 +62,17 @@ class ChannelViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
+    // Mark: - Keyboard events
+    func keyboardWillShow(notification: NSNotification) {
+        var info = notification.userInfo!
+        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        self.bottomStackViewConstraint.constant = keyboardFrame.size.height + 20
+    }
+
+    func keyboardWillHide(notification: NSNotification) {
+        self.bottomStackViewConstraint.constant = 20
+    }
+
     
     // MARK: - Socket.io event handlers
     func addHandlers(channelName: String) {
@@ -72,7 +92,13 @@ class ChannelViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.messagesTableView.reloadData()
             }
         }
-        
+
     }
-    
+
+
+    // MARK: Actions
+    @IBAction func viewDidTap(sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+
 }
