@@ -16,6 +16,7 @@ class ChannelViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var navigation: UINavigationItem!
     @IBOutlet weak var messagesTableView: UITableView!
     @IBOutlet weak var bottomStackViewConstraint: NSLayoutConstraint!
+    @IBOutlet weak var messageTextField: UITextField!
     var channel: Channel?
     var messages = [Message]()
     let socket = SocketIOClient(socketURL: NSURL(string: "http://localhost:3000")!)
@@ -145,6 +146,18 @@ class ChannelViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - Actions
     @IBAction func viewDidTap(sender: UITapGestureRecognizer) {
         view.endEditing(true)
+    }
+    @IBAction func sendButtonDidTap(sender: UIButton) {
+        sendMessage()
+    }
+    @IBAction func messageTextFieldDidReturn(sender: UITextField) {
+        sendMessage()
+    }
+    private func sendMessage() {
+        if let messageBody = messageTextField.text where !messageBody.isEmpty {
+            socket.emit("new_message", ["channelName": channel!.name, "body": messageBody])
+            messageTextField.text = ""
+        }
     }
 
 }

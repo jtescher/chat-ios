@@ -88,14 +88,20 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="lu3-RV-W9h">
                                         <rect key="frame" x="0.0" y="550" width="560" height="30"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="500" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bd6-Nf-Dvk">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" placeholderIntrinsicWidth="500" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bd6-Nf-Dvk">
                                                 <rect key="frame" x="0.0" y="0.0" width="504" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="messageTextFieldDidReturn:" destination="Nzm-eI-lAc" eventType="primaryActionTriggered" id="GVV-gM-N65"/>
+                                                </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="36" placeholderIntrinsicHeight="30" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqY-lA-qDM">
                                                 <rect key="frame" x="524" y="0.0" width="36" height="30"/>
                                                 <state key="normal" title="Send"/>
+                                                <connections>
+                                                    <action selector="sendButtonDidTap:" destination="Nzm-eI-lAc" eventType="touchUpInside" id="anl-G8-me6"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -118,6 +124,7 @@
                     <navigationItem key="navigationItem" title="Channel" id="0Jk-3H-5MR"/>
                     <connections>
                         <outlet property="bottomStackViewConstraint" destination="TZN-k2-HyC" id="W0a-QM-15u"/>
+                        <outlet property="messageTextField" destination="Bd6-Nf-Dvk" id="Fi4-G7-6on"/>
                         <outlet property="messagesTableView" destination="afg-0R-94L" id="R4P-jn-8bG"/>
                         <outlet property="navigation" destination="0Jk-3H-5MR" id="uPf-kO-RKa"/>
                     </connections>
